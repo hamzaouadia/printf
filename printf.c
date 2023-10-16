@@ -12,7 +12,7 @@ void ft_write_string(char *str, int *len)
 	while (*str)
 	{
 		write(1, &*str, 1);
-		*len += 1;
+		(*len)++;
 		str++;
 	}
 }
@@ -27,7 +27,7 @@ void ft_write_string(char *str, int *len)
 void ft_write(char c, int *len)
 {
 	write(1, &c, 1);
-	*len += 1;
+	(*len)++;
 }
 
 /**
