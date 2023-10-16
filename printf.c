@@ -1,23 +1,6 @@
 #include "main.h"
 
 /**
- *	ft_write_string - function that print a string
- *	@str: string.
- *	@len: integer.
- *	Return: nothing.
-*/
-
-void ft_write_string(char *str, int *len)
-{
-	while (*str)
-	{
-		write(1, &*str, 1);
-		*len += 1;
-		str++;
-	}
-}
-
-/**
  *	ft_write - function that print a charachter
  *	@c: character.
  *	@len: integer.
@@ -28,6 +11,27 @@ void ft_write(char c, int *len)
 {
 	write(1, &c, 1);
 	*len += 1;
+}
+
+/**
+ *	ft_write_string - function that print a string
+ *	@str: string.
+ *	@len: integer.
+ *	Return: nothing.
+*/
+
+void ft_write_string(char *str, int *len)
+{
+	if (!str)
+	{
+		ft_write("(null)", len);
+		return;
+	}
+	while (*str)
+	{
+		ft_write(*str, len);
+		str++;
+	}
 }
 
 /**
