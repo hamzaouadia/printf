@@ -44,7 +44,7 @@ void ft_specifiers(va_list ptr, char c, int *len)
 		ft_write(va_arg(ptr, int), len);
 	else if (c == 's')
 		ft_write_string(va_arg(ptr, char *), len);
-	else if (c == 's')
+	else if (c == '%')
 		ft_write('%', len);
 	else
 		ft_write(c, len);
