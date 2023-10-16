@@ -46,7 +46,6 @@ void ft_specifiers(va_list ptr, char c, int *len)
 		ft_write_string(va_arg(ptr, char *), len);
 	else
 	{
-		ft_write('%', len);
 		ft_write(c, len);
 	}
 }
