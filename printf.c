@@ -47,7 +47,10 @@ void ft_specifiers(va_list ptr, char c, int *len)
 	else if (c == '%')
 		ft_write('%', len);
 	else
+	{
+		ft_write('%', len);
 		ft_write(c, len);
+	}
 }
 
 /**
