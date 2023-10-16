@@ -57,21 +57,22 @@ void ft_specifiers(va_list ptr, char c, int *len)
 int _printf(const char *format, ...)
 {
 	int len = 0;
+	int i = 0;
 	va_list ptr;
 
 	va_start(ptr, format);
-	while (*format)
+	while (format[i])
 	{
-		if (*format != '%')
-			ft_write(*format, &len);
+		if (format[i] != '%')
+			ft_write(format[i], &len);
 		else
 		{
-			if (*format + 1 == '\0')
+			if (format[i + 1] == '\0')
 				break;
-			ft_specifiers(ptr, *format + 1, &len);
-			format++;
+			ft_specifiers(ptr, format[i + 1], &len);
+			i++;
 		}
-		format++;
+		i++;
 	}
 	va_end(ptr);
 	return (len);
