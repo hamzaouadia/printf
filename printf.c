@@ -51,7 +51,7 @@ void ft_specifiers(va_list ptr, char c, int *len)
 /**
  *	_printf - function that produces output according to a format.
  *	@format: a character string.
- *	Return: the number of characters printed. 
+ *	Return: the number of characters printed.
 */
 
 int _printf(const char *format, ...)
