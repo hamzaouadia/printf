@@ -9,6 +9,11 @@
 
 void ft_write_string(char *str, int *len)
 {
+	if (!str)
+	{
+		ft_write_string("(null)", len);
+		return;
+	}
 	while (*str)
 	{
 		write(1, &*str, 1);
@@ -33,23 +38,23 @@ void ft_write(char c, int *len)
 /**
  *	ft_specifiers - function that check the specifiers.
  *	@ptr: a struct.
- *	@c: character.
+ *	@str: string of characters.
  *	@len: integer.
  *	Return: nothing.
 */
 
-void ft_specifiers(va_list ptr, char c, int *len)
+void ft_specifiers(va_list ptr, char *str, int *len)
 {
-	if (c == 'c')
+	if (*(str + 1) == 'c')
 		ft_write(va_arg(ptr, int), len);
-	else if (c == 's')
+	else if (*(str + 1) == 's')
 		ft_write_string(va_arg(ptr, char *), len);
-	else if (c == '%')
+	else if (*(str + 1) == '%')
 		ft_write('%', len);
 	else
 	{
-		ft_write('%', len);
-		ft_write(c, len);
+		ft_write(*str, len);
+		ft_write(*(str + 1), len);
 	}
 }
 
@@ -66,15 +71,22 @@ int _printf(const char *format, ...)
 	va_list ptr;
 
 	va_start(ptr, format);
+	if (!format)
+		return (-1);
 	while (format[i])
 	{
 		if (format[i] != '%')
 			ft_write(format[i], &len);
-		else
+		else if (format[i] == '%')
 		{
+			if (format[i + 1] == ' ')
+			{
+				while (format[i + 1] == ' ')
+					i++;
+			}
 			if (format[i + 1] == '\0')
-				break;
-			ft_specifiers(ptr, format[i + 1], &len);
+				return (-1);
+			ft_specifiers(ptr, (char *)format + i, &len);
 			i++;
 		}
 		i++;
