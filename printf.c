@@ -44,7 +44,7 @@ void ft_write(char c, int *len)
 
 void ft_putnbr(int nbr, int *len)
 {
-	long long int n = nbr;
+	int n = nbr;
 
 	if (n < 0)
 	{
