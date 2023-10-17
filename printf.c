@@ -36,6 +36,31 @@ void ft_write(char c, int *len)
 }
 
 /**
+ *	ft_putnbr - function that print an integer
+ *	@nbr: integer.
+ *	@len: integer.
+ *	Return: nothing.
+*/
+
+void ft_putnbr(int nbr, int *len)
+{
+	long long int n = nbr;
+
+	if (n < 0)
+	{
+		ft_write('-', len);
+		n *= -1;
+	}
+	if (n > 9)
+	{
+		ft_putnbr(n / 10, len);
+		ft_putnbr(n % 10, len);
+	}
+	else
+		ft_write(n + '0', len);
+}
+
+/**
  *	ft_specifiers - function that check the specifiers.
  *	@ptr: a struct.
  *	@str: string of characters.
@@ -49,6 +74,8 @@ void ft_specifiers(va_list ptr, char *str, int *len)
 		ft_write(va_arg(ptr, int), len);
 	else if (*(str + 1) == 's')
 		ft_write_string(va_arg(ptr, char *), len);
+	else if (*(str + 1) == 'd' || *(str + 1) == 'i')
+		ft_putnbr(va_arg(ptr, int), len);
 	else if (*(str + 1) == '%')
 		ft_write('%', len);
 	else
