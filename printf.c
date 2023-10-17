@@ -44,20 +44,24 @@ void ft_write(char c, int *len)
 
 void ft_putnbr(int nbr, int *len)
 {
-	long long n = nbr;
-
-	if (n < 0)
+	if (nbr == -2147483648)
 	{
 		ft_write('-', len);
-		n *= -1;
+		ft_write('2', len);
+		ft_putnbr(147483648, len);
 	}
-	if (n > 9)
+	if (nbr < 0)
 	{
-		ft_putnbr(n / 10, len);
-		ft_putnbr(n % 10, len);
+		ft_write('-', len);
+		nbr *= -1;
+	}
+	if (nbr > 9)
+	{
+		ft_putnbr(nbr / 10, len);
+		ft_putnbr(nbr % 10, len);
 	}
 	else
-		ft_write(n + '0', len);
+		ft_write(nbr + '0', len);
 }
 
 /**
