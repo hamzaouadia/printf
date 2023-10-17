@@ -7,5 +7,6 @@ int _printf(const char *format, ...);
 void ft_specifiers(va_list ptr, char *str, int *len);
 void ft_write(char c, int *len);
 void ft_write_string(char *str, int *len);
+void ft_putnbr(int nbr, int *len);
 
 #endif
