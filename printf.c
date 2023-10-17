@@ -49,6 +49,7 @@ void ft_putnbr(int nbr, int *len)
 		ft_write('-', len);
 		ft_write('2', len);
 		ft_putnbr(147483648, len);
+		return;
 	}
 	if (nbr < 0)
 	{
